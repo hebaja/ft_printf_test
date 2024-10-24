@@ -20,6 +20,13 @@ Test(ft_printf_suite, test_ft_printf_return, .init=redirect_all_stdout)
 	cr_assert_eq(res, 0, "Expected ft_printf to return 0");
 }
 
+// % //////////////////////////////
+Test(ft_printf_suite, test_ft_printf_perc, .init=redirect_all_stdout)
+{
+	ft_printf("%%");
+	cr_assert_stdout_eq_str("%", "Expected ft_printf to print percent");
+}
+
 // char //////////////////////////
 Test(ft_printf_suite, test_ft_print_char, .init=redirect_all_stdout)
 {
@@ -105,6 +112,75 @@ Test(ft_printf_suite, test_ft_print_dec_single, .init=redirect_all_stdout)
 {
 	ft_printf("%d", 1234);
 	cr_assert_stdout_eq_str("1234", "Expected ft_printf to print '1234'");
+}
+
+// integer ////////////////////////
+Test(ft_printf_suite, test_ft_print_int, .init=redirect_all_stdout)
+{
+	ft_printf("...%i...", 5);
+	cr_assert_stdout_eq_str("...5...", "Expected ft_printf to print '...5...'");
+}
+
+Test(ft_printf_suite, test_ft_print_int_back, .init=redirect_all_stdout)
+{
+	ft_printf("%i...", 42);
+	cr_assert_stdout_eq_str("42...", "Expected ft_printf to print '42...'");
+}
+
+Test(ft_printf_suite, test_ft_print_int_front, .init=redirect_all_stdout)
+{
+	ft_printf("...%i", 456);
+	cr_assert_stdout_eq_str("...456", "Expected ft_printf to print '...456'");
+}
+
+Test(ft_printf_suite, test_ft_print_int_single, .init=redirect_all_stdout)
+{
+	ft_printf("%i", 1234);
+	cr_assert_stdout_eq_str("1234", "Expected ft_printf to print '1234'");
+}
+
+// unsigned integer ////////////////////////
+Test(ft_printf_suite, test_ft_print_u_int, .init=redirect_all_stdout)
+{
+	ft_printf("...%u...", 5);
+	cr_assert_stdout_eq_str("...5...", "Expected ft_printf to print '...5...'");
+}
+
+Test(ft_printf_suite, test_ft_print_u_int_back, .init=redirect_all_stdout)
+{
+	ft_printf("%u...", 42);
+	cr_assert_stdout_eq_str("42...", "Expected ft_printf to print '42...'");
+}
+
+Test(ft_printf_suite, test_ft_print_u_int_front, .init=redirect_all_stdout)
+{
+	ft_printf("...%u", 456);
+	cr_assert_stdout_eq_str("...456", "Expected ft_printf to print '...456'");
+}
+
+Test(ft_printf_suite, test_ft_print_u_int_single, .init=redirect_all_stdout)
+{
+	ft_printf("%u", 1234);
+	cr_assert_stdout_eq_str("1234", "Expected ft_printf to print '1234'");
+}
+
+Test(ft_printf_suite, test_ft_print_u_int_high, .init=redirect_all_stdout)
+{
+	ft_printf("%u", 4294967295);
+	cr_assert_stdout_eq_str("4294967295", "Expected ft_printf to print '4294967295'");
+}
+
+// hex //////////////////////////////////
+Test(ft_printf_suite, test_ft_pritf_hex_low, .init=redirect_all_stdout)
+{
+	ft_printf("%x", 42);
+	cr_assert_stdout_eq_str("2a", "Expected ft_printf to print '2a'");
+}
+
+Test(ft_printf_suite, test_ft_pritf_hex_upper, .init=redirect_all_stdout)
+{
+	ft_printf("%X", 42);
+	cr_assert_stdout_eq_str("2A", "Expected ft_printf to print '2a'");
 }
 
 // void * ///////////////////////////////
