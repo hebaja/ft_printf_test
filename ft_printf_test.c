@@ -13,11 +13,18 @@ void redirect_all_stdout(void)
 	cr_redirect_stderr();
 }
 
+Test(ft_printf_suite, test_len)
+{
+	int	res;
+	res = ft_printf("...%d..%c..", 1, 'a');
+	ft_printf("%d/n", res);
+}
+
 Test(ft_printf_suite, test_ft_printf_return, .init=redirect_all_stdout)
 {
 	int	res;
 	res = ft_printf("...%d..%c..", 1, 'a');
-	cr_assert_eq(res, 0, "Expected ft_printf to return 0");
+	cr_assert_eq(res, 9, "Expected ft_printf to return 0");
 }
 
 // % //////////////////////////////
