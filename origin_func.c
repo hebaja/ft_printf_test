@@ -16,9 +16,11 @@ int	main()
 	res = printf("%p", NULL);
 	printf(" >>> %d\n", res);
 	printf("String NULL -> ");
-	res = printf("%s", str);
+	res = printf("%s", NULL);
 	printf(" >>> %d\n", res);
 	printf("Zero as argument -> ");
-	res = printf(0);
+	res = printf(NULL);
 	printf("%d\n", res);
+	res = printf("test %s\n", str);
+	printf(" >>> %d", res);
 }
