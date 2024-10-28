@@ -20,8 +20,26 @@ Test(ft_printf_suite, test_ft_printf_perc, .init=redirect_all_stdout)
 	int	res;
 
 	res = ft_printf("%%");
-	cr_assert_stdout_eq_str("%", "Expected ft_printf to print percent");
+	cr_assert_stdout_eq_str("%", "Expected ft_printf to print percents.");
 	cr_assert_eq(1, res);
+}
+
+Test(ft_printf_suite, test_ft_printf_perc3, .init=redirect_all_stdout)
+{
+	int	res;
+
+	res = ft_printf("%%%%%%");
+	cr_assert_stdout_eq_str("%%%", "Expected ft_printf to print percents.");
+	cr_assert_eq(3, res);
+}
+
+Test(ft_printf_suite, test_ft_printf_perc4, .init=redirect_all_stdout)
+{
+	int	res;
+
+	res = ft_printf("%% %% %% %%");
+	cr_assert_stdout_eq_str("% % % %", "Expected ft_printf to print percents");
+	cr_assert_eq(7, res);
 }
 
 // char //////////////////////////
@@ -309,3 +327,12 @@ Test(ft_printf_suite, test_ft_printf_mixed_return, .init=redirect_all_stdout)
 	res = ft_printf("...%d..%c..", 1, 'a');
 	cr_assert_eq(res, 9, "Expected ft_printf to return 0");
 }
+
+// mixed /////////////////////////////
+Test(ft_printf_suite, test_ft_printf_mixed, .init=redirect_all_stdout)
+{
+	int res;
+	res = ft_printf("mixed%%%c%%%s%%%d%%%i%% %x %X", 'A', "42", 42, 42, 42, 42);
+	cr_assert_stdout_eq_str("mixed%A%42%42%42% 2a 2A", "Expected printf to print a mixed output.");
+	cr_assert_eq(23, res);
+}	
